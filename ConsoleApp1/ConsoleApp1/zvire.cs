@@ -60,6 +60,14 @@ namespace ConsoleApp1
                 Console.WriteLine("Neplatný formát! Zadejte prosím čísla ve formátu 'X-Y'.");
             }
 
+        public void Adoptuj()
+        {
+            this.adopce = true;
+            Console.WriteLine("Zvíře bylo adoptováno.");
+            Console.Write("Zadej datum adopce: ");
+            int datum = Console.ReadLine();
+            datum_adopce=datum;
+            Console.WriteLine(datum_adopce);
         }
     }
 }
