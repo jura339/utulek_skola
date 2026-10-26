@@ -37,14 +37,14 @@ namespace ConsoleApp1
             string jmeno;
             string druh;
             string[] casti;
-            
+
             Console.WriteLine("Vyhledavani:");
             Console.Write("Zadejte jmeno (nechte volne pro nevybrani): ");
             jmeno = Console.ReadLine();
-            
+
             Console.Write("Zadejte druh (nechte volne pro nevybrani): ");
             druh = Console.ReadLine();
-           
+
             Console.Write("Zadejte vekove rozmezi (např. 2-9, nechte volne pro nevybrani rozmezi): ");
             string vstup = Console.ReadLine();
 
@@ -60,14 +60,18 @@ namespace ConsoleApp1
                 Console.WriteLine("Neplatný formát! Zadejte prosím čísla ve formátu 'X-Y'.");
             }
 
+        }
         public void Adoptuj()
         {
             this.adopce = true;
             Console.WriteLine("Zvíře bylo adoptováno.");
             Console.Write("Zadej datum adopce: ");
-            int datum = Console.ReadLine();
-            datum_adopce=datum;
-            Console.WriteLine(datum_adopce);
+            string Datum = Console.ReadLine();
+            if (int.TryParse(Datum, out int datum_adopce))
+            {
+                Console.WriteLine("Adopce Uspesna!");
+            }
+            Console.WriteLine(this.datum_adopce);
         }
     }
 }
