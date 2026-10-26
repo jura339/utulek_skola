@@ -69,7 +69,7 @@ namespace ConsoleApp1
             string Datum = Console.ReadLine();
             if (int.TryParse(Datum, out int datum_adopce))
             {
-                Console.WriteLine("Adopce Uspesna!");
+                Console.WriteLine("Adopce úspesná!");
             }
             Console.WriteLine(this.datum_adopce);
         }

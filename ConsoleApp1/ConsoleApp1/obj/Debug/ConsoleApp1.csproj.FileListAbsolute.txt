@@ -1,0 +1,2 @@
+C:\Users\61814mikulasek\Documents\GitHub\utulek_skola\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\61814mikulasek\Documents\GitHub\utulek_skola\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
