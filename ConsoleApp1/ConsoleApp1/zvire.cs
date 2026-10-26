@@ -73,6 +73,10 @@ namespace ConsoleApp1
             }
             Console.WriteLine(this.datum_adopce);
         }
-    }
+
+        public void Vypis()
+        {
+            Console.WriteLine($"Jméno: {jmeno}, Věk: {vek}, Druh: {druh}, Pohlaví: {pohlavi}, Datum přijetí: {datum_prijeti}, Zdravotní stav: {zdravotni_stav}, Poznámka: {poznamka}, Adopce: {adopce}, Datum adopce: {datum_adopce}"); 
+        }
 }
     
