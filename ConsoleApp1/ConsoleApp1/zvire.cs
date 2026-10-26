@@ -16,10 +16,10 @@ namespace ConsoleApp1
         public int datum_prijeti { get; set; }
         public string zdravotni_stav { get; set; }
         public string poznamka { get; set; }
-        public bool adopce {  get; set; }
-        public int datum_adopce{ get; set; }
+        public bool? adopce {  get; set; }
+        public int? datum_adopce{ get; set; }
 
-        public zvire(string jmeno, int vek, string druh, char pohlavi, int datum_prijeti, string zdravotni_stav, string poznamka, bool adopce, int datum_adopce)
+        public zvire(string jmeno, int vek, string druh, char pohlavi, int datum_prijeti, string zdravotni_stav, string poznamka, bool? adopce = false, int? datum_adopce = null)
         {
             this.jmeno = jmeno;
             this.vek = vek;
@@ -30,6 +30,36 @@ namespace ConsoleApp1
             this.poznamka = poznamka;
             this.adopce = adopce;
             this.datum_adopce = datum_adopce;
+        }
+
+        public void search()
+        {
+            string jmeno;
+            string druh;
+            string[] casti;
+            
+            Console.WriteLine("Vyhledavani:");
+            Console.Write("Zadejte jmeno (nechte volne pro nevybrani): ");
+            jmeno = Console.ReadLine();
+            
+            Console.Write("Zadejte druh (nechte volne pro nevybrani): ");
+            druh = Console.ReadLine();
+           
+            Console.Write("Zadejte vekove rozmezi (např. 2-9, nechte volne pro nevybrani rozmezi): ");
+            string vstup = Console.ReadLine();
+
+            casti = vstup.Split('-');
+            if (casti.Length == 2 && int.TryParse(casti[0], out int min) && int.TryParse(casti[1], out int max))
+            {
+                Console.WriteLine($"Vybráno rozmezí: Od {min} do {max} let.");
+            }
+            else if (vstup == "") { Console.WriteLine("Rozmezi nevybrano"); }
+
+            else
+            {
+                Console.WriteLine("Neplatný formát! Zadejte prosím čísla ve formátu 'X-Y'.");
+            }
+
         }
     }
 }
