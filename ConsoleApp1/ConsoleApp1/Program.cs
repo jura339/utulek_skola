@@ -11,6 +11,10 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             List<zvire> list = new List<zvire>();
+
+            zvire pepa = new zvire("Pepa", 5, "pes", 'M', 20220101, "zdravý", "bez poznámky");
+            list.Add(pepa);
+            pepa.Vypis();
         }
     }
 }
