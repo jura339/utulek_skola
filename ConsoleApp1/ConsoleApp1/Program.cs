@@ -10,6 +10,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            List<zvire> list = new List<zvire>();
         }
     }
 }
