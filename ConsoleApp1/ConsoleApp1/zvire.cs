@@ -16,8 +16,10 @@ namespace ConsoleApp1
         public int datum_prijeti { get; set; }
         public string zdravotni_stav { get; set; }
         public string poznamka { get; set; }
+        public bool adopce {  get; set; }
+        public int datum_adopce{ get; set; }
 
-        public zvire(string jmeno, int vek, string druh, char pohlavi, int datum_prijeti, string zdravotni_stav, string poznamka)
+        public zvire(string jmeno, int vek, string druh, char pohlavi, int datum_prijeti, string zdravotni_stav, string poznamka, bool adopce, int datum_adopce)
         {
             this.jmeno = jmeno;
             this.vek = vek;
@@ -26,6 +28,8 @@ namespace ConsoleApp1
             this.datum_prijeti = datum_prijeti;
             this.zdravotni_stav = zdravotni_stav;
             this.poznamka = poznamka;
+            this.adopce = adopce;
+            this.datum_adopce = datum_adopce;
         }
     }
 }
