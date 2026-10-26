@@ -31,6 +31,16 @@ namespace ConsoleApp1
             this.adopce = adopce;
             this.datum_adopce = datum_adopce;
         }
+
+        public void Adoptuj()
+        {
+            this.adopce = true;
+            Console.WriteLine("Zvíře bylo adoptováno.");
+            Console.Write("Zadej datum adopce: ");
+            int datum = Console.ReadLine();
+            datum_adopce=datum;
+            Console.WriteLine(datum_adopce);
+        }
     }
 }
     
