@@ -15,14 +15,12 @@ namespace ConsoleApp1
             zvire pepa = new zvire("Pepa", 5, "pes", 'M', 20220101, "zdravý", "bez poznámky");
             list.Add(pepa);
             pepa.Vypis();
-<<<<<<< Updated upstream
-=======
             bool konec = false;
 
             while (!konec)
             {
                 
-                Console.WriteLine(===== ÚTULEK PRO ZVÍŘATA =====);
+                Console.WriteLine("===== ÚTULEK PRO ZVÍŘATA =====");
                 Console.WriteLine("1 - Přidat zvíře");
                 Console.WriteLine("2 - Vypsat všechna zvířata");
                 Console.WriteLine("3 - Vyhledat/ filtrovat");
@@ -59,6 +57,24 @@ namespace ConsoleApp1
                     
 
         }
+
+        public void delete()
+        {
+            vypis_zvirat();
+            Console.Write("Zadejte ID zvirete jenz chcete smazat: ");
+
+        }
+
+        public void vypis_zvirat()
+        {
+            foreach (zvire z in list)
+            {
+                z.Vypis();
+                Console.WriteLine("//------------------------------");
+            }
+        }
+
+
         public void search()
         {
             //parametry
@@ -109,7 +125,6 @@ namespace ConsoleApp1
             {
                 filtrovanySeznam = filtrovanySeznam.Where(z => z.vek >= minVek && z.vek <= maxVek);
             }
->>>>>>> Stashed changes
         }
     }
 }
