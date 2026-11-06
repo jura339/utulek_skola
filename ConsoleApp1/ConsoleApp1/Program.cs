@@ -17,6 +17,47 @@ namespace ConsoleApp1
             pepa.Vypis();
 <<<<<<< Updated upstream
 =======
+            bool konec = false;
+
+            while (!konec)
+            {
+                
+                Console.WriteLine(===== ÚTULEK PRO ZVÍŘATA =====);
+                Console.WriteLine("1 - Přidat zvíře");
+                Console.WriteLine("2 - Vypsat všechna zvířata");
+                Console.WriteLine("3 - Vyhledat/ filtrovat");
+                Console.WriteLine("4 - Označit adopci");
+                Console.WriteLine("5 - Statistiky (volitelné)");
+                Console.WriteLine("0 - Konec");
+                Console.Write("Zadejte volbu: ");
+                int volba = int.Parse(Console.ReadLine());
+                switch (volba)
+                {
+                    case 1:
+                       
+                        break;
+                    case 2:
+                        
+                        break;
+                    case 3:               
+                        search();
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        
+                        break;
+                    case 0:
+                        konec = true;
+                        break;
+                    default:
+                        Console.WriteLine("Neplatná volba. Zkuste to znovu.");
+                        break;
+                }
+            }
+                    
+
         }
         public void search()
         {
