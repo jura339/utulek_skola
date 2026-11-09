@@ -98,6 +98,7 @@ void pridat_zvire()
     string pozn = Console.ReadLine();
 
     zvire Zvire = new zvire(IDs, jmeno, Vek, druh, pohlavi, Datum, stav, pozn);
+    list.Add(Zvire);
     Console.WriteLine("Zvire uspesne vytvoreno");
     IDs += 1;
 }
