@@ -22,10 +22,11 @@ namespace ConsoleApp1
                 
                 Console.WriteLine("===== ÚTULEK PRO ZVÍŘATA =====");
                 Console.WriteLine("1 - Přidat zvíře");
-                Console.WriteLine("2 - Vypsat všechna zvířata");
-                Console.WriteLine("3 - Vyhledat/ filtrovat");
-                Console.WriteLine("4 - Označit adopci");
-                Console.WriteLine("5 - Statistiky (volitelné)");
+                Console.WriteLine("2 - Odebrat zvíře");
+                Console.WriteLine("3- Vypsat všechna zvířata");
+                Console.WriteLine("4 - Vyhledat/ filtrovat");
+                Console.WriteLine("5 - Označit adopci");
+                Console.WriteLine("6 - Statistiky (volitelné)");
                 Console.WriteLine("0 - Konec");
                 Console.Write("Zadejte volbu: ");
                 int volba = int.Parse(Console.ReadLine());
@@ -35,17 +36,18 @@ namespace ConsoleApp1
                        
                         break;
                     case 2:
-                        vypis_zvirat()
-                        
+                        delete()                    
                         break;
                     case 3:               
-                        search();
+                        vypis_zvirat()
                         break;
                     case 4:
-                        
+                        search();
                         break;
                     case 5:
                         
+                        break;
+                    case 6:
                         break;
                     case 0:
                         konec = true;
@@ -61,7 +63,21 @@ namespace ConsoleApp1
         public void delete()
         {
             vypis_zvirat();
-            Console.Write("Zadejte ID zvirete jenz chcete smazat: ");
+            Console.Write("Zadejte název zvířete jenž chcete smazat: ");
+            string nazev = Console.ReadLine();
+            bool odstranen = false;
+            foreach (zvire z in list)
+            {
+                if(nazev == z.Jmeno){
+                    list.remove(z.Jmeno)
+                    odstranen = true;
+                }
+
+            }
+            if(odstranen==false){
+                Console.WriteLine("Toto zvíře v útulku nevedeme");
+            }
+        
 
         }
 
