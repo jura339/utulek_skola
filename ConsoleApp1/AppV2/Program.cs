@@ -1,4 +1,5 @@
-﻿using AppV2;
+﻿using System.ComponentModel.DataAnnotations;
+using AppV2;
 
 List<zvire> list = new List<zvire>();
 int IDs = 0;
@@ -28,19 +29,29 @@ void Main()
                 switch (volba)
                 {
                     case 1:
-                       
+                        Console.WriteLine("//------------------------------");
+                        pridat_zvire();
+                        Console.WriteLine("//==============================");
                         break;
                     case 2:
-                        
+                        Console.WriteLine("//------------------------------");
+                        vypis_zvirat();
+                        Console.WriteLine("//==============================");
                         break;
                     case 3:               
+                        Console.WriteLine("//------------------------------");
                         search();
+                        Console.WriteLine("//==============================");
                         break;
                     case 4:
-                        
+                        Console.WriteLine("//------------------------------");
+                        Adopce();
+                        Console.WriteLine("//==============================");
                         break;
                     case 5:
-                        
+                        Console.WriteLine("//------------------------------");
+                        vypis_zvirat();
+                        Console.WriteLine("//==============================");
                         break;
                     case 0:
                         konec = true;
@@ -53,11 +64,47 @@ void Main()
                     
         }
 
+void pridat_zvire()
+{
+    Start:
+    Console.Write("Zadejte jmeno: ");
+    string jmeno = Console.ReadLine();
+    if (jmeno == "") {Console.WriteLine("Zadejte platne jmeno"); goto Start;}
+
+    Console.Write("Zadejte vek: ");
+    string vek = Console.ReadLine();
+    
+    if (int.TryParse(vek, out int Vek)) {};
+    if (vek == "" || Vek < 0 || Vek == null)
+    {
+        Console.WriteLine("Zadejte platny vek");
+        goto Start;
+    }
+
+    Console.Write("Zadejte druh: ");
+    string druh = Console.ReadLine();
+
+    Console.Write("Zadejte pohlavi: ");
+    string pohlavi = Console.ReadLine();
+
+    Console.Write("Zadejte datum prijeti ve formatu YY/MM/DD (20221030) ");
+    string datum = Console.ReadLine();
+    if (int.TryParse(datum, out int Datum)) {};
+
+    Console.Write("Zadejte zdravotni stav: ");
+    string stav = Console.ReadLine();
+
+    Console.Write("Zadejte poznamku: ");
+    string pozn = Console.ReadLine();
+
+    zvire Zvire = new zvire(IDs, jmeno, Vek, druh, pohlavi, Datum, stav, pozn);
+    Console.WriteLine("Zvire uspesne vytvoreno");
+    IDs += 1;
+}
 void delete()
         {
             vypis_zvirat();
             Console.Write("Zadejte ID zvirete jenz chcete smazat: ");
-
         }
 
 void vypis_zvirat()
@@ -65,7 +112,6 @@ void vypis_zvirat()
             foreach (zvire z in list)
             {
                 z.Vypis();
-                Console.WriteLine("//------------------------------");
             }
         }
 
@@ -120,5 +166,31 @@ void search()
                 filtrovanySeznam = filtrovanySeznam.Where(z => z.vek >= minVek && z.vek <= maxVek);
             }
         }
+void Adopce()
+{
+    vypis_zvirat();
+    Console.Write("Zadejte ID zvirete jenz chcete adoptovat: ");
+    string vstupId = Console.ReadLine();
+
+    if (int.TryParse(vstupId, out int hledaneId))
+    {
+        // 4. Najdeme zvíře v seznamu podle zadaného ID
+        // Zápis z => z.Id == hledaneId znamená: "Najdi zvíře z, jehož Id se rovná hledaneId"
+        zvire nalezenéZvire = list.Find(z => z.id == hledaneId);
+
+        if (nalezenéZvire != null)
+        {
+            nalezenéZvire.Adoptuj();
+        }
+        else
+        {
+            Console.WriteLine($"Neplatne ID");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Zadané ID není platné číslo.");
+    }
+}
 
 Main();
