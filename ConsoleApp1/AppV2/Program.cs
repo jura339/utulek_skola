@@ -118,7 +118,7 @@ void delete()
             foreach (zvire z in list)
             {
                 if(nazev == z.Jmeno){
-                    list.remove(z.Jmeno)
+                    list.remove(z.Jmeno);
                     odstranen = true;
                 }
 
