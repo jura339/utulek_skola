@@ -9,7 +9,6 @@ namespace ConsoleApp1
 {
     internal class zvire
     {
-        public int id {get; set; }
         public int id {  get; set; }
         public string jmeno { get; set; }
         public int vek { get; set; }
