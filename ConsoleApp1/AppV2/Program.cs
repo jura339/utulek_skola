@@ -19,10 +19,11 @@ void Main()
                 
                 Console.WriteLine("===== ÚTULEK PRO ZVÍŘATA =====");
                 Console.WriteLine("1 - Přidat zvíře");
-                Console.WriteLine("2 - Vypsat všechna zvířata");
-                Console.WriteLine("3 - Vyhledat/ filtrovat");
-                Console.WriteLine("4 - Označit adopci");
-                Console.WriteLine("5 - Statistiky (volitelné)");
+                Console.WriteLine("2 - Odebrat zvíře");
+                Console.WriteLine("3 - Vypsat všechna zvířata");
+                Console.WriteLine("4 - Vyhledat/ filtrovat");
+                Console.WriteLine("5 - Označit adopci");
+                Console.WriteLine("6 - Statistiky (volitelné)");
                 Console.WriteLine("0 - Konec");
                 Console.Write("Zadejte volbu: ");
                 int volba = int.Parse(Console.ReadLine());
@@ -35,22 +36,27 @@ void Main()
                         break;
                     case 2:
                         Console.WriteLine("//------------------------------");
-                        vypis_zvirat();
+                        delete();
                         Console.WriteLine("//==============================");
                         break;
                     case 3:               
                         Console.WriteLine("//------------------------------");
-                        search();
+                        vypis_zvirat();
                         Console.WriteLine("//==============================");
                         break;
                     case 4:
                         Console.WriteLine("//------------------------------");
-                        Adopce();
+                        search();
                         Console.WriteLine("//==============================");
                         break;
                     case 5:
+                        Console.WriteLine("//------------------------------");                        
+                        Adopce();
+                        Console.WriteLine("//==============================");
+                        break;
+                    case 6:
                         Console.WriteLine("//------------------------------");
-                        vypis_zvirat();
+
                         Console.WriteLine("//==============================");
                         break;
                     case 0:
@@ -102,10 +108,26 @@ void pridat_zvire()
     Console.WriteLine("Zvire uspesne vytvoreno");
     IDs += 1;
 }
+
 void delete()
         {
             vypis_zvirat();
-            Console.Write("Zadejte ID zvirete jenz chcete smazat: ");
+            Console.Write("Zadejte název zvířete jenž chcete smazat: ");
+            string nazev = Console.ReadLine();
+            bool odstranen = false;
+            foreach (zvire z in list)
+            {
+                if(nazev == z.Jmeno){
+                    list.remove(z.Jmeno)
+                    odstranen = true;
+                }
+
+            }
+            if(odstranen==false){
+                Console.WriteLine("Toto zvíře v útulku nevedeme");
+            }
+        
+
         }
 
 void vypis_zvirat()
