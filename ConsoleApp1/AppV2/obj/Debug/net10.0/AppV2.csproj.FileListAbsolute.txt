@@ -1,0 +1,15 @@
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\bin\Debug\net10.0\AppV2.exe
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\bin\Debug\net10.0\AppV2.deps.json
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\bin\Debug\net10.0\AppV2.runtimeconfig.json
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\bin\Debug\net10.0\AppV2.dll
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\bin\Debug\net10.0\AppV2.pdb
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.AssemblyInfoInputs.cache
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.AssemblyInfo.cs
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.csproj.CoreCompileInputs.cache
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.sourcelink.json
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.dll
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\refint\AppV2.dll
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.pdb
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\AppV2.genruntimeconfig.cache
+C:\Users\jura7\Documents\GitHub\utulek_skola\ConsoleApp1\AppV2\obj\Debug\net10.0\ref\AppV2.dll
