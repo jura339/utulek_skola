@@ -55,7 +55,6 @@ namespace ConsoleApp1
                 }
             }
                     
-
         }
 
         public void delete()
@@ -73,7 +72,6 @@ namespace ConsoleApp1
                 Console.WriteLine("//------------------------------");
             }
         }
-
 
         public void search()
         {
