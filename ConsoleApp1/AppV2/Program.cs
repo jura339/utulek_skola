@@ -27,6 +27,8 @@ void Main()
                 Console.WriteLine("0 - Konec");
                 Console.Write("Zadejte volbu: ");
                 int volba = int.Parse(Console.ReadLine());
+                string Volba = Console.ReadLine();
+                if (int.TryParse(Volba, out int volba)) {};
                 switch (volba)
                 {
                     case 1:
@@ -119,6 +121,9 @@ void delete()
             {
                 if(nazev == z.Jmeno){
                     list.remove(z.Jmeno);
+                if(nazev == z.jmeno){
+                    list.Remove(z);
+                    settonull(z);
                     odstranen = true;
                 }
 
@@ -129,6 +134,10 @@ void delete()
         
 
         }
+void settonull(zvire z)
+{
+    z = null;
+}
 
 void vypis_zvirat()
         {
