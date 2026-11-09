@@ -35,6 +35,7 @@ namespace ConsoleApp1
                        
                         break;
                     case 2:
+                        vypis_zvirat()
                         
                         break;
                     case 3:               
