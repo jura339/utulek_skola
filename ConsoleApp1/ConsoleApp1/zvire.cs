@@ -10,6 +10,7 @@ namespace ConsoleApp1
     internal class zvire
     {
         public int id {get; set; }
+        public int id {  get; set; }
         public string jmeno { get; set; }
         public int vek { get; set; }
         public string druh { get; set; }
@@ -20,7 +21,6 @@ namespace ConsoleApp1
         public bool? adopce { get; set; }
         public int? datum_adopce { get; set; }
 
-        public zvire(string jmeno, int vek, string druh, char pohlavi, int datum_prijeti, string zdravotni_stav, string poznamka, bool? adopce = false, int? datum_adopce = null)
         public zvire(int id, string jmeno, int vek, string druh, char pohlavi, int datum_prijeti, string zdravotni_stav, string poznamka, bool? adopce = false, int? datum_adopce = null)
         {
             this.jmeno = jmeno;
@@ -78,7 +78,6 @@ namespace ConsoleApp1
 
         public void remove()
         {
-            
             Console.WriteLine($"ID: {id}, Jméno: {jmeno}, Věk: {vek}, Druh: {druh}, Pohlaví: {pohlavi}, Datum přijetí: {datum_prijeti}, Zdravotní stav: {zdravotni_stav}, Poznámka: {poznamka}, Adopce: {adopce}, Datum adopce: {datum_adopce}");
         }
 
@@ -107,7 +106,7 @@ namespace ConsoleApp1
             this.poznamka = Pozn;
         }
 
-        public void
+        public void pepega(){}
     }
 }
     
