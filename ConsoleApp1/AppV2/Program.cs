@@ -26,7 +26,6 @@ void Main()
                 Console.WriteLine("6 - Statistiky (volitelné)");
                 Console.WriteLine("0 - Konec");
                 Console.Write("Zadejte volbu: ");
-                int volba = int.Parse(Console.ReadLine());
                 string Volba = Console.ReadLine();
                 if (int.TryParse(Volba, out int volba)) {};
                 switch (volba)
@@ -119,8 +118,6 @@ void delete()
             bool odstranen = false;
             foreach (zvire z in list)
             {
-                if(nazev == z.Jmeno){
-                    list.remove(z.Jmeno);
                 if(nazev == z.jmeno){
                     list.Remove(z);
                     settonull(z);
