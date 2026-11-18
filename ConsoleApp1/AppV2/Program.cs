@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Text.Json;
 using AppV2;
 
 List<zvire> list = new List<zvire>();
@@ -24,6 +26,8 @@ void Main()
                 Console.WriteLine("4 - Vyhledat/ filtrovat");
                 Console.WriteLine("5 - Označit adopci");
                 Console.WriteLine("6 - Statistiky (volitelné)");
+                Console.WriteLine("7 - Exportovat data do souboru");
+                Console.WriteLine("8 - Importovat data ze souboru");
                 Console.WriteLine("0 - Konec");
                 Console.Write("Zadejte volbu: ");
                 string Volba = Console.ReadLine();
@@ -60,6 +64,16 @@ void Main()
 
                         Console.WriteLine("//==============================");
                         break;
+                    case 7:
+                        Console.WriteLine("//------------------------------");
+                        ExportovatData();
+                        Console.WriteLine("//==============================");
+                        break;
+                    case 8:
+                        Console.WriteLine("//------------------------------");
+                        ImportovatData();
+                        Console.WriteLine("//==============================");
+                        break;
                     case 0:
                         konec = true;
                         break;
@@ -68,7 +82,6 @@ void Main()
                         break;
                 }
             }
-                    
         }
 
 void pridat_zvire()
@@ -116,21 +129,29 @@ void delete()
             Console.Write("Zadejte název zvířete jenž chcete smazat: ");
             string nazev = Console.ReadLine();
             bool odstranen = false;
+            zvire Z = null;
             foreach (zvire z in list)
             {
                 if(nazev == z.jmeno){
-                    list.Remove(z);
-                    settonull(z);
+                    Z = z;
                     odstranen = true;
+                    break;
                 }
 
             }
+
+            if (Z != null)
+            {
+                list.Remove(Z);
+                settonull(Z);
+                Console.WriteLine("Zvire uspesne odstraneno");
+            }
+
             if(odstranen==false){
                 Console.WriteLine("Toto zvíře v útulku nevedeme");
             }
-        
-
         }
+
 void settonull(zvire z)
 {
     z = null;
@@ -167,6 +188,7 @@ void search()
             casti = vstup.Split('-');
             if (casti.Length == 2 && int.TryParse(casti[0], out int min) && int.TryParse(casti[1], out int max))
             {
+                filtrovatVek = true;
                 Console.WriteLine($"Vybrano rozmezi: od {min} do {max} let.");
             }
             else if (vstup == "") { Console.WriteLine("Rozmezi nevybrano"); }
@@ -194,7 +216,25 @@ void search()
             {
                 filtrovanySeznam = filtrovanySeznam.Where(z => z.vek >= minVek && z.vek <= maxVek);
             }
+
+
+            var vysledky = filtrovanySeznam.ToList();
+
+            //vypis
+            Console.WriteLine($"\n--- Výsledky vyhledávání (Nalezeno: {vysledky.Count}) ---");
+            if (vysledky.Count > 0)
+            {
+                foreach (var z in vysledky)
+                {
+                    z.Vypis();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Žádná zvířata neodpovídají zadaným kritériím.");
+            }
         }
+
 void Adopce()
 {
     vypis_zvirat();
@@ -203,8 +243,7 @@ void Adopce()
 
     if (int.TryParse(vstupId, out int hledaneId))
     {
-        // 4. Najdeme zvíře v seznamu podle zadaného ID
-        // Zápis z => z.Id == hledaneId znamená: "Najdi zvíře z, jehož Id se rovná hledaneId"
+        //najit zvire v seznamu
         zvire nalezenéZvire = list.Find(z => z.id == hledaneId);
 
         if (nalezenéZvire != null)
@@ -221,5 +260,83 @@ void Adopce()
         Console.WriteLine("Zadané ID není platné číslo.");
     }
 }
+
+//--------------------
+//Import Export
+//--------------------
+
+void ExportovatData()
+{
+    Console.Write("Zadejte název souboru pro export (např. zvirata.json): ");
+    string cesta = Console.ReadLine();
+    
+    if (string.IsNullOrWhiteSpace(cesta))
+    {
+        cesta = "zvirata.json"; //kdyby uzivatel byl jelito
+    }
+
+    try
+    {
+        //format json
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        string jsonString = JsonSerializer.Serialize(list, options);
+        
+        File.WriteAllText(cesta, jsonString);
+        Console.WriteLine($"Data byla úspěšně exportována do souboru: {Path.GetFullPath(cesta)}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Chyba při exportu: {ex.Message}");
+    }
+}
+
+void ImportovatData()
+{
+    Console.Write("Zadejte název souboru pro import (např. zvirata.json): ");
+    string cesta = Console.ReadLine();
+
+    if (string.IsNullOrWhiteSpace(cesta))
+    {
+        cesta = "zvirata.json";
+    }
+
+    if (!File.Exists(cesta))
+    {
+        Console.WriteLine($"Soubor '{cesta}' nebyl nalezen.");
+        return;
+    }
+
+    try
+    {
+        string jsonString = File.ReadAllText(cesta);
+        List<zvire> nactenaZvirata = JsonSerializer.Deserialize<List<zvire>>(jsonString);
+
+        if (nactenaZvirata != null)
+        {
+            list = nactenaZvirata;
+            
+            //zvetsit Id, at nedojde ke kolizi pri importu
+            if (list.Count > 0)
+            {
+                IDs = list.Max(z => z.id) + 1;
+            }
+            else
+            {
+                IDs = 0;
+            }
+
+            Console.WriteLine($"Úspěšně importováno {list.Count} zvířat.");
+        }
+        else
+        {
+            Console.WriteLine("Soubor je prázdný nebo se data nepodařilo načíst.");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Chyba při importu: {ex.Message}");
+    }
+}
+
 
 Main();
