@@ -28,6 +28,7 @@ void Main()
                 Console.WriteLine("6 - Statistiky (volitelné)");
                 Console.WriteLine("7 - Exportovat data do souboru");
                 Console.WriteLine("8 - Importovat data ze souboru");
+                Console.WriteLine("9 - Editovat zvire");
                 Console.WriteLine("0 - Konec");
                 Console.Write("Zadejte volbu: ");
                 string Volba = Console.ReadLine();
@@ -61,7 +62,7 @@ void Main()
                         break;
                     case 6:
                         Console.WriteLine("//------------------------------");
-
+                        Statistiky();
                         Console.WriteLine("//==============================");
                         break;
                     case 7:
@@ -72,6 +73,11 @@ void Main()
                     case 8:
                         Console.WriteLine("//------------------------------");
                         ImportovatData();
+                        Console.WriteLine("//==============================");
+                        break;
+                    case 9:
+                        Console.WriteLine("//------------------------------");
+                        Edit();
                         Console.WriteLine("//==============================");
                         break;
                     case 0:
@@ -258,6 +264,72 @@ void Adopce()
     else
     {
         Console.WriteLine("Zadané ID není platné číslo.");
+    }
+}
+
+
+
+void Edit()
+{
+    vypis_zvirat();
+    Console.Write("Zadejte ID zvirete jenz chcete editovat: ");
+    string vstupId = Console.ReadLine();
+
+    if (int.TryParse(vstupId, out int hledaneId))
+    {
+        //najit zvire v seznamu
+        zvire nalezenéZvire = list.Find((zvire z) => z.id == hledaneId);
+
+        if (nalezenéZvire != null)
+        {
+            nalezenéZvire.Edit();
+        }
+        else
+        {
+            Console.WriteLine($"Neplatne ID");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Zadané ID není platné číslo.");
+    }
+}
+
+
+
+
+void Statistiky()
+{
+    if (list.Count == 0)
+    {
+        Console.WriteLine("Útulek je prázdný, nejsou k dispozici žádné statistiky.");
+        return;
+    }
+
+    Console.WriteLine("===== STATISTIKY ÚTULKU =====");
+    Console.WriteLine($"Celkový počet zvířat v útulku: {list.Count}");
+
+    //prumerny vek
+    double prumernyVek = list.Average((zvire z) => z.vek);
+    Console.WriteLine($"Průměrný věk zvířat: {prumernyVek:F1} let");
+
+    //pocet adoptovanych
+    int pocetAdoptovanych = list.Count((zvire z) => z.adopce.GetValueOrDefault(false)); //kdyby se nekomu povedlo udelat null v zvire.adoptuj *facepalm*
+    int pocetNeadoptovanych = list.Count - pocetAdoptovanych;
+    Console.WriteLine($"Počet adoptovaných zvířat: {pocetAdoptovanych}");
+    Console.WriteLine($"Počet zvířat čekajících na domov: {pocetNeadoptovanych}");
+
+    //podle druhu
+    Console.WriteLine("\n--- Počet zvířat podle druhu ---");
+    var zvirataPodleDruhu = list.GroupBy(z => z.druh.Trim().ToLower())
+                                .Select(g => new { 
+                                    Druh = g.Key,
+                                    Pocet = g.Count() 
+                                }); //ja vim ze tohle neni moc pekny, ale lepsi nez to vypisovat jednotlive, delat hromadu temp apod T.T
+
+    foreach (var skupina in zvirataPodleDruhu)
+    {
+        Console.WriteLine($"- {skupina.Druh}: {skupina.Pocet}");
     }
 }
 
